@@ -1,0 +1,21 @@
+name: Ansible Lint
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        description: 'Runner to use for the job'
+        required: false
+        type: string
+        default: 'ubuntu-latest'
+
+jobs:
+  lint:
+    name: Ansible Lint
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@v24

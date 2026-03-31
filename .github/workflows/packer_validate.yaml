@@ -11,17 +11,11 @@ on:
         description: 'Branch or ref to check out'
         type: string
         default: 'main'
-    # secrets:
-    #   VAULT_TOKEN:
-    #     required: false
 
 jobs:
   validate:
     name: Validate Packer Templates
     runs-on: arc-runners
-    # env:
-    #   VAULT_ADDR: ${{ vars.VAULT_ADDR }}
-    #   VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
     steps:
     - name: Checkout Code
       uses: actions/checkout@v6.0.2

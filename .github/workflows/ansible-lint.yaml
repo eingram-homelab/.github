@@ -3,19 +3,22 @@ name: Ansible Lint
 on:
   workflow_call:
     inputs:
-      runner:
-        description: 'Runner to use for the job'
-        required: false
+      repository:
+        description: 'Repository containing Ansible playbooks and roles'
         type: string
-        default: 'ubuntu-latest'
+        default: ''
+      ref:
+        description: 'Branch or ref to check out. Defaults to the PR head branch.'
+        type: string
+        default: ''
 
 jobs:
   lint:
     name: Ansible Lint
-    runs-on: ${{ inputs.runner }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@v24
+        uses: ansible/ansible-lint@v26.3.0

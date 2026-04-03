@@ -86,6 +86,7 @@ jobs:
           import os
           import sys
           import yaml
+          from pathlib import Path
 
           filepath = sys.argv[1]
           with open(filepath) as f:
@@ -115,9 +116,9 @@ jobs:
               print(f"WARNING: {filepath}")
               for i in issues:
                   print(i)
-              os.environ["FAILED"] = "1"
+              Path("/var/tmp/validation_warnings.txt").touch()
           EOF
-              if [[ $? -ne 0 ]] || [[ "$FAILED" == "1" ]]; then
+              if [[ $? -ne 0 ]] || [[ -f /var/tmp/validation_warnings.txt ]]; then
                 failed=1
               fi
               fi

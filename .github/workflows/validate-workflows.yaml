@@ -10,7 +10,7 @@ on:
 
 jobs:
   validate:
-    name: Validate Workflow Files
+    name: YAML Lint - Workflow Files
     runs-on: arc-runners
     steps:
       - name: Checkout code
@@ -19,9 +19,9 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6.2.0
         with:
-          python-version: '3.11'
+          python-version: '3.13'
           cache: 'pip'
 
       - name: Install yamllint
@@ -39,7 +39,7 @@ jobs:
           }' .github/workflows/ workflow-templates/
 
   changed-files-check:
-    name: Changed Files Summary
+    name: Validate Changed Files Summary
     runs-on: arc-runners
     steps:
       - name: Checkout

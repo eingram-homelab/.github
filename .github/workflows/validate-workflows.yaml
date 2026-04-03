@@ -83,6 +83,7 @@ jobs:
               # Warn if workflow_call inputs are missing descriptions
               if grep -qE '^  workflow_call' "$file"; then
                 python3 - "$file" <<'EOF'
+          import os
           import sys
           import yaml
 
@@ -114,9 +115,9 @@ jobs:
               print(f"WARNING: {filepath}")
               for i in issues:
                   print(i)
-              sys.exit(1)
+              os.environ["FAILED"] = "1"
           EOF
-              if [[ $? -ne 0 ]]; then
+              if [[ $? -ne 0 ]] || [[ "$FAILED" == "1" ]]; then
                 failed=1
               fi
               fi

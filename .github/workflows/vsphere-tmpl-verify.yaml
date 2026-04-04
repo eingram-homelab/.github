@@ -20,8 +20,10 @@ on:
         default: 'arc-runners'
     secrets:
       VAULT_TOKEN:
+        description: 'Vault token with permissions to access secrets needed for validation'
         required: true
       GCP_STORAGE:
+        description: 'Base64-encoded GCP service account key for accessing secrets needed for validation'
         required: true
 
 jobs:

@@ -29,8 +29,10 @@ on:
         default: 'arc-runners'
     secrets:
       VAULT_TOKEN:
+        description: 'Vault token for accessing secrets during the playbook run'
         required: true
       ANSIBLE_SSH_KEY:
+        description: 'SSH private key for Ansible to connect to hosts (base64-encoded)'
         required: true
 
 jobs:
